@@ -9,7 +9,7 @@ namespace graph_db{
             NodeID from_node_;
             NodeID to_node_;
             string label_;
-            PropertyMap properties;
+            PropertyMap properties_;
         public:
             explicit Edge(EdgeID id,NodeID from,NodeID to,const string& label=" "){
                 id_=id;
