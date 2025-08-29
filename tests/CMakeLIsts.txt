@@ -1,0 +1,26 @@
+include(FetchContent)
+
+# Download GoogleTest
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+)
+# Prevent GoogleTest from installing files
+set(INSTALL_GTEST OFF CACHE BOOL "Disable installation of googletest")
+FetchContent_MakeAvailable(googletest)
+
+enable_testing()
+
+add_executable(runTests
+    testgraph.cpp
+)
+
+target_link_libraries(runTests
+    PRIVATE
+        graphdb
+        GTest::gtest_main
+        Threads::Threads
+)
+
+include(GoogleTest)
+gtest_discover_tests(runTests)

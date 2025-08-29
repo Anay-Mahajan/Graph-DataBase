@@ -7,11 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Add compiler flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -O2")
 
-# Find packages
-find_package(GTest REQUIRED)
+# Dependencies
 find_package(Threads REQUIRED)
 
-# Include directories
+# Include headers
 include_directories(include)
 
 # Add subdirectories

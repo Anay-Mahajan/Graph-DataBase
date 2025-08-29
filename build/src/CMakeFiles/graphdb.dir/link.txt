@@ -1,0 +1,2 @@
+/usr/bin/ar qc libgraphdb.a CMakeFiles/graphdb.dir/core/graph.cpp.o CMakeFiles/graphdb.dir/core/node.cpp.o CMakeFiles/graphdb.dir/core/edge.cpp.o
+/usr/bin/ranlib libgraphdb.a

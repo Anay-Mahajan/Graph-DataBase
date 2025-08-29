@@ -2,12 +2,9 @@
 #include<unordered_map>
 #include <cstdint>
 #include<variant>
-using namespace std;
-
 namespace graph_db{
-    using NodeID= uint64_t;
-    using EdgeID=uint64_t;
-    using PropertyValue = variant<int64_t, double, std::string, bool>;
-    using PropertyMap=unordered_map<string,PropertyValue>;
-    
+    using NodeID= std::uint64_t;
+    using EdgeID=std::uint64_t;
+    using PropertyValue = std::variant<std::int64_t, double, std::string, bool>;
+    using PropertyMap=std::unordered_map<std::string,PropertyValue>;
 }
