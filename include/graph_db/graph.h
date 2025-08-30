@@ -21,17 +21,20 @@ public:
     NodeID create_node();
     bool remove_node(NodeID id);
     Node* get_node(NodeID id);
-    const Node* get_node(NodeID id) const;
     bool has_node(NodeID id);
-
-    // Edge management
-    // Default value for label belongs in the declaration (header).
+    size_t node_count() const { 
+        std::shared_lock lock(mutex_);
+        return Nodes_.size(); 
+    }
+    size_t edge_count() const { 
+        std::shared_lock lock(mutex_);
+        return Edges_.size(); 
+    }
     EdgeID create_edge(NodeID from, NodeID to, const std::string& label = "");
     bool remove_edge(EdgeID id);
     Edge* get_edge(EdgeID id);
     bool has_edge(EdgeID id);
-
-    // Utility
+    Node* get_node_unlocked(NodeID id);
     std::vector<NodeID> get_neighbors(NodeID id);
 
 private:
@@ -44,4 +47,4 @@ private:
     mutable std::shared_mutex mutex_;
 };
 
-} // namespace graph_db
+} 

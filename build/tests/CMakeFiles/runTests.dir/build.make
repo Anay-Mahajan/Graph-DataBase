@@ -72,28 +72,28 @@ include tests/CMakeFiles/runTests.dir/flags.make
 tests/CMakeFiles/runTests.dir/codegen:
 .PHONY : tests/CMakeFiles/runTests.dir/codegen
 
-tests/CMakeFiles/runTests.dir/testgraph.cpp.o: tests/CMakeFiles/runTests.dir/flags.make
-tests/CMakeFiles/runTests.dir/testgraph.cpp.o: /Users/anaymahajan/Desktop/Graph-DataBase/tests/testgraph.cpp
-tests/CMakeFiles/runTests.dir/testgraph.cpp.o: tests/CMakeFiles/runTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/anaymahajan/Desktop/Graph-DataBase/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/runTests.dir/testgraph.cpp.o"
-	cd /Users/anaymahajan/Desktop/Graph-DataBase/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/runTests.dir/testgraph.cpp.o -MF CMakeFiles/runTests.dir/testgraph.cpp.o.d -o CMakeFiles/runTests.dir/testgraph.cpp.o -c /Users/anaymahajan/Desktop/Graph-DataBase/tests/testgraph.cpp
+tests/CMakeFiles/runTests.dir/test_graph.cpp.o: tests/CMakeFiles/runTests.dir/flags.make
+tests/CMakeFiles/runTests.dir/test_graph.cpp.o: /Users/anaymahajan/Desktop/Graph-DataBase/tests/test_graph.cpp
+tests/CMakeFiles/runTests.dir/test_graph.cpp.o: tests/CMakeFiles/runTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/anaymahajan/Desktop/Graph-DataBase/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object tests/CMakeFiles/runTests.dir/test_graph.cpp.o"
+	cd /Users/anaymahajan/Desktop/Graph-DataBase/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/runTests.dir/test_graph.cpp.o -MF CMakeFiles/runTests.dir/test_graph.cpp.o.d -o CMakeFiles/runTests.dir/test_graph.cpp.o -c /Users/anaymahajan/Desktop/Graph-DataBase/tests/test_graph.cpp
 
-tests/CMakeFiles/runTests.dir/testgraph.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/runTests.dir/testgraph.cpp.i"
-	cd /Users/anaymahajan/Desktop/Graph-DataBase/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/anaymahajan/Desktop/Graph-DataBase/tests/testgraph.cpp > CMakeFiles/runTests.dir/testgraph.cpp.i
+tests/CMakeFiles/runTests.dir/test_graph.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/runTests.dir/test_graph.cpp.i"
+	cd /Users/anaymahajan/Desktop/Graph-DataBase/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/anaymahajan/Desktop/Graph-DataBase/tests/test_graph.cpp > CMakeFiles/runTests.dir/test_graph.cpp.i
 
-tests/CMakeFiles/runTests.dir/testgraph.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/runTests.dir/testgraph.cpp.s"
-	cd /Users/anaymahajan/Desktop/Graph-DataBase/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/anaymahajan/Desktop/Graph-DataBase/tests/testgraph.cpp -o CMakeFiles/runTests.dir/testgraph.cpp.s
+tests/CMakeFiles/runTests.dir/test_graph.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/runTests.dir/test_graph.cpp.s"
+	cd /Users/anaymahajan/Desktop/Graph-DataBase/build/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/anaymahajan/Desktop/Graph-DataBase/tests/test_graph.cpp -o CMakeFiles/runTests.dir/test_graph.cpp.s
 
 # Object files for target runTests
 runTests_OBJECTS = \
-"CMakeFiles/runTests.dir/testgraph.cpp.o"
+"CMakeFiles/runTests.dir/test_graph.cpp.o"
 
 # External object files for target runTests
 runTests_EXTERNAL_OBJECTS =
 
-tests/runTests: tests/CMakeFiles/runTests.dir/testgraph.cpp.o
+tests/runTests: tests/CMakeFiles/runTests.dir/test_graph.cpp.o
 tests/runTests: tests/CMakeFiles/runTests.dir/build.make
 tests/runTests: src/libgraphdb.a
 tests/runTests: lib/libgtest_main.a

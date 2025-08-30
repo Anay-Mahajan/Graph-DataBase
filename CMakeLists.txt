@@ -13,6 +13,9 @@ find_package(Threads REQUIRED)
 # Include headers
 include_directories(include)
 
+# Enable testing at the root
+include(CTest)  
+
 # Add subdirectories
 add_subdirectory(src)
 add_subdirectory(tests)

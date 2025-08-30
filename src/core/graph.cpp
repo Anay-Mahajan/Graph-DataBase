@@ -12,7 +12,7 @@ namespace graph_db{
         auto it = Nodes_.find(id);
         if (it == Nodes_.end()) return false;
 
-        // Collect all edge IDs connected to this node so we can remove them safely.
+        // Collect edges connected to the node
         std::vector<EdgeID> edges_to_remove;
         for (auto const & [eid, edge_ptr] : Edges_) {
             if (!edge_ptr) continue;
@@ -21,12 +21,17 @@ namespace graph_db{
             }
         }
 
-        // Remove edges (this will also update the other node's in/out sets).
+        // Remove edges directly while holding the unique_lock (avoid calling remove_edge())
         for (EdgeID eid : edges_to_remove) {
-            // reuse remove_edge which expects the lock already held
-            // but be careful: remove_edge will try to lock again if it locks internally.
-            // Our remove_edge implementation assumes caller holds the graph lock, so it's safe.
-            remove_edge(eid);
+            auto eit = Edges_.find(eid);
+            if (eit == Edges_.end()) continue;
+            Edge* e = eit->second.get();
+            // remove references from neighbor nodes if they still exist
+            auto fromIt = Nodes_.find(e->from_node());
+            if (fromIt != Nodes_.end()) fromIt->second->remove_outgoing_edge(eid);
+            auto toIt = Nodes_.find(e->to_node());
+            if (toIt != Nodes_.end()) toIt->second->remove_incoming_edge(eid);
+            Edges_.erase(eit);
         }
 
         // Erase the node
@@ -40,9 +45,15 @@ namespace graph_db{
         }
         return Nodes_[id].get();
     }
-    bool   Graph::has_node(NodeID id){
-        return Nodes_.find(id)!=Nodes_.end();
+    bool  Graph::has_node(NodeID id){
+        auto it=Nodes_.find(id);
+        return it!=Nodes_.end();
     }
+    Node* Graph::get_node_unlocked(NodeID id) {
+    auto it = Nodes_.find(id);
+    return (it != Nodes_.end()) ? it->second.get() : nullptr;
+    }
+
     bool Graph::has_edge(EdgeID id){
         auto it=Edges_.find(id);
         return it!=Edges_.end();
@@ -72,19 +83,28 @@ namespace graph_db{
         Nodes_[from]->add_outgoing_edge(id);
         Nodes_[to]->add_incoming_edge(id);
 
-    return id;
+        return id;
     }
-    bool Graph::remove_edge(EdgeID id){
-        std::unique_lock lock(mutex_);
-        if(!has_edge(id)){
-            return 0;
+    bool Graph::remove_edge(EdgeID id) {
+        std::unique_lock lock(mutex_);   // lock graph
+
+        auto it = Edges_.find(id);
+        if (it == Edges_.end()) {
+            return false;   // edge not found
         }
-        Edge *E=get_edge(id);
-        Node *from =get_node(E->from_node());
-        Node *to= get_node(E->to_node());
-        from->remove_outgoing_edge(id);
-        to->remove_incoming_edge(id);
-        Edges_.erase(id);
+
+        Edge* E = it->second.get();
+        Node* from = get_node_unlocked(E->from_node());  // these should still lock node’s mutex, not graph’s
+        Node* to   = get_node_unlocked(E->to_node());
+
+        if (from) {
+            from->remove_outgoing_edge(id);
+        }
+        if (to) {
+            to->remove_incoming_edge(id);
+        }
+
+        Edges_.erase(it);   // finally erase edge
         return true;
     }
     vector<NodeID> Graph::get_neighbors(NodeID id){

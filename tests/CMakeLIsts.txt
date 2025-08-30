@@ -12,7 +12,7 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(runTests
-    testgraph.cpp
+    test_graph.cpp
 )
 
 target_link_libraries(runTests

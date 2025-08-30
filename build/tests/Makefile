@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = /Users/anaymahajan/Desktop/Graph-DataBase/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
+	/opt/homebrew/bin/ctest $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake cache editor..."
@@ -130,29 +140,29 @@ runTests/fast:
 	cd /Users/anaymahajan/Desktop/Graph-DataBase/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/build
 .PHONY : runTests/fast
 
-testgraph.o: testgraph.cpp.o
-.PHONY : testgraph.o
+test_graph.o: test_graph.cpp.o
+.PHONY : test_graph.o
 
 # target to build an object file
-testgraph.cpp.o:
-	cd /Users/anaymahajan/Desktop/Graph-DataBase/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/testgraph.cpp.o
-.PHONY : testgraph.cpp.o
+test_graph.cpp.o:
+	cd /Users/anaymahajan/Desktop/Graph-DataBase/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/test_graph.cpp.o
+.PHONY : test_graph.cpp.o
 
-testgraph.i: testgraph.cpp.i
-.PHONY : testgraph.i
+test_graph.i: test_graph.cpp.i
+.PHONY : test_graph.i
 
 # target to preprocess a source file
-testgraph.cpp.i:
-	cd /Users/anaymahajan/Desktop/Graph-DataBase/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/testgraph.cpp.i
-.PHONY : testgraph.cpp.i
+test_graph.cpp.i:
+	cd /Users/anaymahajan/Desktop/Graph-DataBase/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/test_graph.cpp.i
+.PHONY : test_graph.cpp.i
 
-testgraph.s: testgraph.cpp.s
-.PHONY : testgraph.s
+test_graph.s: test_graph.cpp.s
+.PHONY : test_graph.s
 
 # target to generate assembly for a file
-testgraph.cpp.s:
-	cd /Users/anaymahajan/Desktop/Graph-DataBase/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/testgraph.cpp.s
-.PHONY : testgraph.cpp.s
+test_graph.cpp.s:
+	cd /Users/anaymahajan/Desktop/Graph-DataBase/build && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/test_graph.cpp.s
+.PHONY : test_graph.cpp.s
 
 # Help Target
 help:
@@ -162,10 +172,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... test"
 	@echo "... runTests"
-	@echo "... testgraph.o"
-	@echo "... testgraph.i"
-	@echo "... testgraph.s"
+	@echo "... test_graph.o"
+	@echo "... test_graph.i"
+	@echo "... test_graph.s"
 .PHONY : help
 
 

@@ -2,6 +2,7 @@
 #include<shared_mutex>
 namespace graph_db{
     void Edge::set_property(std::string key,PropertyValue p){
+        std::unique_lock lock(mutex_);
         properties_[key]=p;
     }
     bool Edge::has_property(std::string s){
