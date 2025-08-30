@@ -1,6 +1,6 @@
-GraphAdditionalTests.CreateAndRemoveNode 2 0.00239806
-GraphAdditionalTests.CreateAndRemoveEdge 2 0.0024556
-GraphAdditionalTests.GetNeighbors 2 0.00252494
-GraphAdditionalTests.EdgePropertyManagement 2 0.00231848
-ThreadSafetyTests.ConcurrentEdgeCreateModifyRemove 2 0.0151698
+GraphAdditionalTests.CreateAndRemoveNode 3 0.00252675
+GraphAdditionalTests.CreateAndRemoveEdge 3 0.00270877
+GraphAdditionalTests.GetNeighbors 3 0.00256724
+GraphAdditionalTests.EdgePropertyManagement 3 0.00231739
+ThreadSafetyTests.ConcurrentEdgeCreateModifyRemove 3 0.0140188
 ---
