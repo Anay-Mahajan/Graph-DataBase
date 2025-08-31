@@ -1,0 +1,30 @@
+# ---- CMake build artifacts ----
+/build*/
+/CMakeFiles/
+/CMakeCache.txt
+cmake_install.cmake
+Makefile
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+
+# ---- IDE / Editor files ----
+.vscode/
+.idea/
+*.code-workspace
+
+# ---- OS generated files ----
+.DS_Store
+Thumbs.db
+
+# ---- Compiled binaries / libs ----
+*.exe
+*.dll
+*.so
+*.dylib
+*.pdb
+*.obj
+*.o
+*.a
+*.lib
