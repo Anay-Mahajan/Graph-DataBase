@@ -5,7 +5,6 @@
 #include <stack>
 #include <limits>
 #include <unordered_map>
-
 namespace graph_db {
 
     // BFS from a source node

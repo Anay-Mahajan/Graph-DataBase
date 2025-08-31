@@ -93,7 +93,7 @@ TEST(ThreadSafetyTests, ConcurrentEdgeCreateModifyRemove) {
     const int creators = 4;
     const int modifiers = 4;
     const int removers = 2;
-    const int iterations_per_thread = 500;
+    constexpr int iterations_per_thread = 500; // constexpr → no capture needed
 
     std::random_device rd;
     std::mt19937_64 rng(rd());
@@ -107,7 +107,7 @@ TEST(ThreadSafetyTests, ConcurrentEdgeCreateModifyRemove) {
     // Edge creator threads
     std::vector<std::thread> threads;
     for (int t = 0; t < creators; ++t) {
-        threads.emplace_back([&g, &edge_ids, &edge_mutex, &stop, iterations_per_thread, &rng, pick_node]() mutable {
+        threads.emplace_back([&g, &edge_ids, &edge_mutex, &stop, &rng, pick_node]() mutable {
             std::mt19937_64 r(rng());
             for (int i = 0; i < iterations_per_thread && !stop.load(); ++i) {
                 NodeID a = pick_node(r);
@@ -115,10 +115,10 @@ TEST(ThreadSafetyTests, ConcurrentEdgeCreateModifyRemove) {
                 if (a == b) continue;
                 try {
                     EdgeID e = g.create_edge(a, b, "concurrent");
-                    std::lock_guard lk(edge_mutex);
+                    std::lock_guard<std::mutex> lk(edge_mutex);
                     edge_ids.push_back(e);
                 } catch (...) {
-                    // create_edge may throw if nodes missing; ignore and continue
+                    // ignore and continue
                 }
             }
         });
@@ -126,16 +126,15 @@ TEST(ThreadSafetyTests, ConcurrentEdgeCreateModifyRemove) {
 
     // Edge modifier threads: set/get/remove property
     for (int t = 0; t < modifiers; ++t) {
-        threads.emplace_back([&g, &edge_ids, &edge_mutex, &stop, iterations_per_thread, &rng]() mutable {
+        threads.emplace_back([&g, &edge_ids, &edge_mutex, &stop, &rng]() mutable {
             std::mt19937_64 r(rng());
-            std::uniform_int_distribution<size_t> dist_idx;
             for (int i = 0; i < iterations_per_thread && !stop.load(); ++i) {
                 EdgeID chosen = 0;
                 {
-                    std::lock_guard lk(edge_mutex);
+                    std::lock_guard<std::mutex> lk(edge_mutex);
                     if (edge_ids.empty()) continue;
-                    dist_idx = std::uniform_int_distribution<size_t>(0, edge_ids.size() - 1);
-                    chosen = edge_ids[dist_idx(r)];
+                    size_t idx = std::uniform_int_distribution<size_t>(0, edge_ids.size() - 1)(r);
+                    chosen = edge_ids[idx];
                 }
                 Edge* e = g.get_edge(chosen);
                 if (!e) continue;
@@ -143,12 +142,11 @@ TEST(ThreadSafetyTests, ConcurrentEdgeCreateModifyRemove) {
                     e->set_property("p", 3.1415);
                     if (e->has_property("p")) {
                         auto v = e->get_property("p");
-                        // Just attempt to extract; if type mismatch, will throw std::bad_variant_access — catch below.
-                        std::get<double>(v);
+                        (void)std::get<double>(v);
                     }
                     e->remove_property("p");
                 } catch (...) {
-                    // ignore any transient errors due to races
+                    // ignore transient race-related errors
                 }
             }
         });
@@ -156,21 +154,18 @@ TEST(ThreadSafetyTests, ConcurrentEdgeCreateModifyRemove) {
 
     // Edge remover threads
     for (int t = 0; t < removers; ++t) {
-        threads.emplace_back([&g, &edge_ids, &edge_mutex, &stop, iterations_per_thread, &rng]() mutable {
+        threads.emplace_back([&g, &edge_ids, &edge_mutex, &stop, &rng]() mutable {
             std::mt19937_64 r(rng());
-            std::uniform_int_distribution<size_t> dist_idx;
             for (int i = 0; i < iterations_per_thread && !stop.load(); ++i) {
                 EdgeID chosen = 0;
                 {
-                    std::lock_guard lk(edge_mutex);
+                    std::lock_guard<std::mutex> lk(edge_mutex);
                     if (edge_ids.empty()) continue;
-                    dist_idx = std::uniform_int_distribution<size_t>(0, edge_ids.size() - 1);
-                    size_t idx = dist_idx(r);
+                    size_t idx = std::uniform_int_distribution<size_t>(0, edge_ids.size() - 1)(r);
                     chosen = edge_ids[idx];
-                    // optimistic: remove id from local tracking; actual graph removal may succeed or already happened
+                    // optimistically remove from tracking
                     edge_ids.erase(edge_ids.begin() + idx);
                 }
-                // try to remove from graph
                 g.remove_edge(chosen);
             }
         });
@@ -182,7 +177,7 @@ TEST(ThreadSafetyTests, ConcurrentEdgeCreateModifyRemove) {
 
     // Basic consistency checks for remaining tracked edges
     {
-        std::lock_guard lk(edge_mutex);
+        std::lock_guard<std::mutex> lk(edge_mutex);
         for (EdgeID eid : edge_ids) {
             if (!g.has_edge(eid)) continue;
             Edge* e = g.get_edge(eid);
@@ -200,6 +195,5 @@ TEST(ThreadSafetyTests, ConcurrentEdgeCreateModifyRemove) {
 
     // Final simple sanity: no crash and graph reports reasonable counts
     ASSERT_GE(g.node_count(), static_cast<size_t>(kNodeCount));
-    // edge_count can be zero or more; just ensure call succeeds
     (void)g.edge_count();
 }

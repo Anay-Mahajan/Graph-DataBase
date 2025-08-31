@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/graphdb.dir/core/edge.cpp.o.d"
   "CMakeFiles/graphdb.dir/core/graph.cpp.o"
   "CMakeFiles/graphdb.dir/core/graph.cpp.o.d"
+  "CMakeFiles/graphdb.dir/core/graph_algo.cpp.o"
+  "CMakeFiles/graphdb.dir/core/graph_algo.cpp.o.d"
   "CMakeFiles/graphdb.dir/core/node.cpp.o"
   "CMakeFiles/graphdb.dir/core/node.cpp.o.d"
   "libgraphdb.a"

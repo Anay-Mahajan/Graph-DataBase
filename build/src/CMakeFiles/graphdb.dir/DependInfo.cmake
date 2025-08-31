@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/anaymahajan/Desktop/Graph-DataBase/src/core/edge.cpp" "src/CMakeFiles/graphdb.dir/core/edge.cpp.o" "gcc" "src/CMakeFiles/graphdb.dir/core/edge.cpp.o.d"
   "/Users/anaymahajan/Desktop/Graph-DataBase/src/core/graph.cpp" "src/CMakeFiles/graphdb.dir/core/graph.cpp.o" "gcc" "src/CMakeFiles/graphdb.dir/core/graph.cpp.o.d"
+  "/Users/anaymahajan/Desktop/Graph-DataBase/src/core/graph_algo.cpp" "src/CMakeFiles/graphdb.dir/core/graph_algo.cpp.o" "gcc" "src/CMakeFiles/graphdb.dir/core/graph_algo.cpp.o.d"
   "/Users/anaymahajan/Desktop/Graph-DataBase/src/core/node.cpp" "src/CMakeFiles/graphdb.dir/core/node.cpp.o" "gcc" "src/CMakeFiles/graphdb.dir/core/node.cpp.o.d"
   )
 

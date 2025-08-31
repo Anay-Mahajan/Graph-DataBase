@@ -188,6 +188,30 @@ core/graph.cpp.s:
 	cd /Users/anaymahajan/Desktop/Graph-DataBase/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/graphdb.dir/build.make src/CMakeFiles/graphdb.dir/core/graph.cpp.s
 .PHONY : core/graph.cpp.s
 
+core/graph_algo.o: core/graph_algo.cpp.o
+.PHONY : core/graph_algo.o
+
+# target to build an object file
+core/graph_algo.cpp.o:
+	cd /Users/anaymahajan/Desktop/Graph-DataBase/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/graphdb.dir/build.make src/CMakeFiles/graphdb.dir/core/graph_algo.cpp.o
+.PHONY : core/graph_algo.cpp.o
+
+core/graph_algo.i: core/graph_algo.cpp.i
+.PHONY : core/graph_algo.i
+
+# target to preprocess a source file
+core/graph_algo.cpp.i:
+	cd /Users/anaymahajan/Desktop/Graph-DataBase/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/graphdb.dir/build.make src/CMakeFiles/graphdb.dir/core/graph_algo.cpp.i
+.PHONY : core/graph_algo.cpp.i
+
+core/graph_algo.s: core/graph_algo.cpp.s
+.PHONY : core/graph_algo.s
+
+# target to generate assembly for a file
+core/graph_algo.cpp.s:
+	cd /Users/anaymahajan/Desktop/Graph-DataBase/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/graphdb.dir/build.make src/CMakeFiles/graphdb.dir/core/graph_algo.cpp.s
+.PHONY : core/graph_algo.cpp.s
+
 core/node.o: core/node.cpp.o
 .PHONY : core/node.o
 
@@ -228,6 +252,9 @@ help:
 	@echo "... core/graph.o"
 	@echo "... core/graph.i"
 	@echo "... core/graph.s"
+	@echo "... core/graph_algo.o"
+	@echo "... core/graph_algo.i"
+	@echo "... core/graph_algo.s"
 	@echo "... core/node.o"
 	@echo "... core/node.i"
 	@echo "... core/node.s"

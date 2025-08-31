@@ -1,5 +1,4 @@
 #include "../../include/graph_db/graph.h"
-using namespace std;
 namespace graph_db{
     NodeID Graph::create_node(){
        std::unique_lock lock(mutex_);
@@ -107,9 +106,9 @@ namespace graph_db{
         Edges_.erase(it);   // finally erase edge
         return true;
     }
-    vector<NodeID> Graph::get_neighbors(NodeID id){
+    std::vector<NodeID> Graph::get_neighbors(NodeID id){
         std::shared_lock lock (mutex_);
-        vector<NodeID>neighbors;
+        std::vector<NodeID>neighbors;
         if(!has_node(id)){
             return neighbors;
         }

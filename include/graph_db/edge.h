@@ -28,6 +28,8 @@ namespace graph_db{
             bool has_property(std::string s);
             void remove_property(std::string s);
             PropertyValue get_property(std::string s);
+            int64_t get_weight() { return weight_; }
+            void set_weight(int64_t w) { weight_ = w; }
     };
 } 
 

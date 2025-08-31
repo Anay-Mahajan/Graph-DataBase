@@ -1,9 +1,13 @@
+cmake_minimum_required(VERSION 3.16)
+
+set(DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
 include(FetchContent)
 
 # Download GoogleTest
 FetchContent_Declare(
   googletest
   URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+  DOWNLOAD_EXTRACT_TIMESTAMP TRUE
 )
 # Prevent GoogleTest from installing files
 set(INSTALL_GTEST OFF CACHE BOOL "Disable installation of googletest")

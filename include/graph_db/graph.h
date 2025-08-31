@@ -36,11 +36,13 @@ public:
     bool has_edge(EdgeID id);
     Node* get_node_unlocked(NodeID id);
     std::vector<NodeID> get_neighbors(NodeID id);
-
-private:
+    std::unordered_map<NodeID, std::unique_ptr<Node>>& get_all_nodes() { return Nodes_; }
+    std::unordered_map<EdgeID, std::unique_ptr<Edge>>& get_all_edges() { return Edges_; }
+    
+    private:
+    
     std::unordered_map<NodeID, std::unique_ptr<Node>> Nodes_;
     std::unordered_map<EdgeID, std::unique_ptr<Edge>> Edges_;
-
     NodeID next_node_id_ = 1;
     EdgeID next_edge_id_ = 1;
 

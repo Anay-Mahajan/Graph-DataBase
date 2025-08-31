@@ -1,64 +1,10 @@
-Start testing: Aug 30 16:17 IST
+Start testing: Aug 31 11:50 IST
 ----------------------------------------------------------
-3/5 Testing: GraphAdditionalTests.GetNeighbors
-3/5 Test: GraphAdditionalTests.GetNeighbors
-Command: "/Users/anaymahajan/Desktop/Graph-DataBase/build/tests/runTests" "--gtest_filter=GraphAdditionalTests.GetNeighbors" "--gtest_also_run_disabled_tests"
-Directory: /Users/anaymahajan/Desktop/Graph-DataBase/build/tests
-"GraphAdditionalTests.GetNeighbors" start time: Aug 30 16:17 IST
-Output:
-----------------------------------------------------------
-Running main() from /Users/anaymahajan/Desktop/Graph-DataBase/build/_deps/googletest-src/googletest/src/gtest_main.cc
-Note: Google Test filter = GraphAdditionalTests.GetNeighbors
-[==========] Running 1 test from 1 test suite.
-[----------] Global test environment set-up.
-[----------] 1 test from GraphAdditionalTests
-[ RUN      ] GraphAdditionalTests.GetNeighbors
-[       OK ] GraphAdditionalTests.GetNeighbors (0 ms)
-[----------] 1 test from GraphAdditionalTests (0 ms total)
-
-[----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (0 ms total)
-[  PASSED  ] 1 test.
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"GraphAdditionalTests.GetNeighbors" end time: Aug 30 16:17 IST
-"GraphAdditionalTests.GetNeighbors" time elapsed: 00:00:00
-----------------------------------------------------------
-
-4/5 Testing: GraphAdditionalTests.EdgePropertyManagement
-4/5 Test: GraphAdditionalTests.EdgePropertyManagement
-Command: "/Users/anaymahajan/Desktop/Graph-DataBase/build/tests/runTests" "--gtest_filter=GraphAdditionalTests.EdgePropertyManagement" "--gtest_also_run_disabled_tests"
-Directory: /Users/anaymahajan/Desktop/Graph-DataBase/build/tests
-"GraphAdditionalTests.EdgePropertyManagement" start time: Aug 30 16:17 IST
-Output:
-----------------------------------------------------------
-Running main() from /Users/anaymahajan/Desktop/Graph-DataBase/build/_deps/googletest-src/googletest/src/gtest_main.cc
-Note: Google Test filter = GraphAdditionalTests.EdgePropertyManagement
-[==========] Running 1 test from 1 test suite.
-[----------] Global test environment set-up.
-[----------] 1 test from GraphAdditionalTests
-[ RUN      ] GraphAdditionalTests.EdgePropertyManagement
-[       OK ] GraphAdditionalTests.EdgePropertyManagement (0 ms)
-[----------] 1 test from GraphAdditionalTests (0 ms total)
-
-[----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (0 ms total)
-[  PASSED  ] 1 test.
-<end of output>
-Test time =   0.00 sec
-----------------------------------------------------------
-Test Passed.
-"GraphAdditionalTests.EdgePropertyManagement" end time: Aug 30 16:17 IST
-"GraphAdditionalTests.EdgePropertyManagement" time elapsed: 00:00:00
-----------------------------------------------------------
-
 1/5 Testing: GraphAdditionalTests.CreateAndRemoveNode
 1/5 Test: GraphAdditionalTests.CreateAndRemoveNode
 Command: "/Users/anaymahajan/Desktop/Graph-DataBase/build/tests/runTests" "--gtest_filter=GraphAdditionalTests.CreateAndRemoveNode" "--gtest_also_run_disabled_tests"
 Directory: /Users/anaymahajan/Desktop/Graph-DataBase/build/tests
-"GraphAdditionalTests.CreateAndRemoveNode" start time: Aug 30 16:17 IST
+"GraphAdditionalTests.CreateAndRemoveNode" start time: Aug 31 11:50 IST
 Output:
 ----------------------------------------------------------
 Running main() from /Users/anaymahajan/Desktop/Graph-DataBase/build/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -77,7 +23,7 @@ Note: Google Test filter = GraphAdditionalTests.CreateAndRemoveNode
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"GraphAdditionalTests.CreateAndRemoveNode" end time: Aug 30 16:17 IST
+"GraphAdditionalTests.CreateAndRemoveNode" end time: Aug 31 11:50 IST
 "GraphAdditionalTests.CreateAndRemoveNode" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -85,7 +31,7 @@ Test Passed.
 2/5 Test: GraphAdditionalTests.CreateAndRemoveEdge
 Command: "/Users/anaymahajan/Desktop/Graph-DataBase/build/tests/runTests" "--gtest_filter=GraphAdditionalTests.CreateAndRemoveEdge" "--gtest_also_run_disabled_tests"
 Directory: /Users/anaymahajan/Desktop/Graph-DataBase/build/tests
-"GraphAdditionalTests.CreateAndRemoveEdge" start time: Aug 30 16:17 IST
+"GraphAdditionalTests.CreateAndRemoveEdge" start time: Aug 31 11:50 IST
 Output:
 ----------------------------------------------------------
 Running main() from /Users/anaymahajan/Desktop/Graph-DataBase/build/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -104,15 +50,69 @@ Note: Google Test filter = GraphAdditionalTests.CreateAndRemoveEdge
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"GraphAdditionalTests.CreateAndRemoveEdge" end time: Aug 30 16:17 IST
+"GraphAdditionalTests.CreateAndRemoveEdge" end time: Aug 31 11:50 IST
 "GraphAdditionalTests.CreateAndRemoveEdge" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/5 Testing: GraphAdditionalTests.GetNeighbors
+3/5 Test: GraphAdditionalTests.GetNeighbors
+Command: "/Users/anaymahajan/Desktop/Graph-DataBase/build/tests/runTests" "--gtest_filter=GraphAdditionalTests.GetNeighbors" "--gtest_also_run_disabled_tests"
+Directory: /Users/anaymahajan/Desktop/Graph-DataBase/build/tests
+"GraphAdditionalTests.GetNeighbors" start time: Aug 31 11:50 IST
+Output:
+----------------------------------------------------------
+Running main() from /Users/anaymahajan/Desktop/Graph-DataBase/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = GraphAdditionalTests.GetNeighbors
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from GraphAdditionalTests
+[ RUN      ] GraphAdditionalTests.GetNeighbors
+[       OK ] GraphAdditionalTests.GetNeighbors (0 ms)
+[----------] 1 test from GraphAdditionalTests (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"GraphAdditionalTests.GetNeighbors" end time: Aug 31 11:50 IST
+"GraphAdditionalTests.GetNeighbors" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/5 Testing: GraphAdditionalTests.EdgePropertyManagement
+4/5 Test: GraphAdditionalTests.EdgePropertyManagement
+Command: "/Users/anaymahajan/Desktop/Graph-DataBase/build/tests/runTests" "--gtest_filter=GraphAdditionalTests.EdgePropertyManagement" "--gtest_also_run_disabled_tests"
+Directory: /Users/anaymahajan/Desktop/Graph-DataBase/build/tests
+"GraphAdditionalTests.EdgePropertyManagement" start time: Aug 31 11:50 IST
+Output:
+----------------------------------------------------------
+Running main() from /Users/anaymahajan/Desktop/Graph-DataBase/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = GraphAdditionalTests.EdgePropertyManagement
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from GraphAdditionalTests
+[ RUN      ] GraphAdditionalTests.EdgePropertyManagement
+[       OK ] GraphAdditionalTests.EdgePropertyManagement (0 ms)
+[----------] 1 test from GraphAdditionalTests (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"GraphAdditionalTests.EdgePropertyManagement" end time: Aug 31 11:50 IST
+"GraphAdditionalTests.EdgePropertyManagement" time elapsed: 00:00:00
 ----------------------------------------------------------
 
 5/5 Testing: ThreadSafetyTests.ConcurrentEdgeCreateModifyRemove
 5/5 Test: ThreadSafetyTests.ConcurrentEdgeCreateModifyRemove
 Command: "/Users/anaymahajan/Desktop/Graph-DataBase/build/tests/runTests" "--gtest_filter=ThreadSafetyTests.ConcurrentEdgeCreateModifyRemove" "--gtest_also_run_disabled_tests"
 Directory: /Users/anaymahajan/Desktop/Graph-DataBase/build/tests
-"ThreadSafetyTests.ConcurrentEdgeCreateModifyRemove" start time: Aug 30 16:17 IST
+"ThreadSafetyTests.ConcurrentEdgeCreateModifyRemove" start time: Aug 31 11:50 IST
 Output:
 ----------------------------------------------------------
 Running main() from /Users/anaymahajan/Desktop/Graph-DataBase/build/_deps/googletest-src/googletest/src/gtest_main.cc
@@ -121,18 +121,18 @@ Note: Google Test filter = ThreadSafetyTests.ConcurrentEdgeCreateModifyRemove
 [----------] Global test environment set-up.
 [----------] 1 test from ThreadSafetyTests
 [ RUN      ] ThreadSafetyTests.ConcurrentEdgeCreateModifyRemove
-[       OK ] ThreadSafetyTests.ConcurrentEdgeCreateModifyRemove (8 ms)
-[----------] 1 test from ThreadSafetyTests (8 ms total)
+[       OK ] ThreadSafetyTests.ConcurrentEdgeCreateModifyRemove (31 ms)
+[----------] 1 test from ThreadSafetyTests (31 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (8 ms total)
+[==========] 1 test from 1 test suite ran. (31 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.01 sec
+Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"ThreadSafetyTests.ConcurrentEdgeCreateModifyRemove" end time: Aug 30 16:17 IST
+"ThreadSafetyTests.ConcurrentEdgeCreateModifyRemove" end time: Aug 31 11:50 IST
 "ThreadSafetyTests.ConcurrentEdgeCreateModifyRemove" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Aug 30 16:17 IST
+End testing: Aug 31 11:50 IST

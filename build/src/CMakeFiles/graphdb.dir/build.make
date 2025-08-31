@@ -114,11 +114,26 @@ src/CMakeFiles/graphdb.dir/core/edge.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/graphdb.dir/core/edge.cpp.s"
 	cd /Users/anaymahajan/Desktop/Graph-DataBase/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/anaymahajan/Desktop/Graph-DataBase/src/core/edge.cpp -o CMakeFiles/graphdb.dir/core/edge.cpp.s
 
+src/CMakeFiles/graphdb.dir/core/graph_algo.cpp.o: src/CMakeFiles/graphdb.dir/flags.make
+src/CMakeFiles/graphdb.dir/core/graph_algo.cpp.o: /Users/anaymahajan/Desktop/Graph-DataBase/src/core/graph_algo.cpp
+src/CMakeFiles/graphdb.dir/core/graph_algo.cpp.o: src/CMakeFiles/graphdb.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/anaymahajan/Desktop/Graph-DataBase/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/graphdb.dir/core/graph_algo.cpp.o"
+	cd /Users/anaymahajan/Desktop/Graph-DataBase/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/graphdb.dir/core/graph_algo.cpp.o -MF CMakeFiles/graphdb.dir/core/graph_algo.cpp.o.d -o CMakeFiles/graphdb.dir/core/graph_algo.cpp.o -c /Users/anaymahajan/Desktop/Graph-DataBase/src/core/graph_algo.cpp
+
+src/CMakeFiles/graphdb.dir/core/graph_algo.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/graphdb.dir/core/graph_algo.cpp.i"
+	cd /Users/anaymahajan/Desktop/Graph-DataBase/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/anaymahajan/Desktop/Graph-DataBase/src/core/graph_algo.cpp > CMakeFiles/graphdb.dir/core/graph_algo.cpp.i
+
+src/CMakeFiles/graphdb.dir/core/graph_algo.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/graphdb.dir/core/graph_algo.cpp.s"
+	cd /Users/anaymahajan/Desktop/Graph-DataBase/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/anaymahajan/Desktop/Graph-DataBase/src/core/graph_algo.cpp -o CMakeFiles/graphdb.dir/core/graph_algo.cpp.s
+
 # Object files for target graphdb
 graphdb_OBJECTS = \
 "CMakeFiles/graphdb.dir/core/graph.cpp.o" \
 "CMakeFiles/graphdb.dir/core/node.cpp.o" \
-"CMakeFiles/graphdb.dir/core/edge.cpp.o"
+"CMakeFiles/graphdb.dir/core/edge.cpp.o" \
+"CMakeFiles/graphdb.dir/core/graph_algo.cpp.o"
 
 # External object files for target graphdb
 graphdb_EXTERNAL_OBJECTS =
@@ -126,9 +141,10 @@ graphdb_EXTERNAL_OBJECTS =
 src/libgraphdb.a: src/CMakeFiles/graphdb.dir/core/graph.cpp.o
 src/libgraphdb.a: src/CMakeFiles/graphdb.dir/core/node.cpp.o
 src/libgraphdb.a: src/CMakeFiles/graphdb.dir/core/edge.cpp.o
+src/libgraphdb.a: src/CMakeFiles/graphdb.dir/core/graph_algo.cpp.o
 src/libgraphdb.a: src/CMakeFiles/graphdb.dir/build.make
 src/libgraphdb.a: src/CMakeFiles/graphdb.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/anaymahajan/Desktop/Graph-DataBase/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libgraphdb.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/anaymahajan/Desktop/Graph-DataBase/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libgraphdb.a"
 	cd /Users/anaymahajan/Desktop/Graph-DataBase/build/src && $(CMAKE_COMMAND) -P CMakeFiles/graphdb.dir/cmake_clean_target.cmake
 	cd /Users/anaymahajan/Desktop/Graph-DataBase/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/graphdb.dir/link.txt --verbose=$(VERBOSE)
 
