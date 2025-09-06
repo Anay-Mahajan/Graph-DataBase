@@ -8,6 +8,27 @@ namespace graph_db{
        Nodes_[id]=std::move(node);
        return id;
     }
+    Node* Graph::create_node(NodeID id){
+       std::unique_lock lock(mutex_);
+       if(Nodes_.find(id)!=Nodes_.end()){
+        throw std::runtime_error("Node with this ID already exists");
+       }
+       if(id>=next_node_id_){
+        next_node_id_=id+1;
+       }
+       auto node = std::make_unique<Node>(id);
+       node->set_index_manager(&index_manager_);
+       Nodes_[id]=std::move(node);
+       return Nodes_[id].get();
+    }
+    bool Graph::save_to_file(const std::string& filename) {
+        storage::Serializer serializer(*this);
+        return serializer.save_to_file(filename);
+    }
+    bool Graph::load_from_file(const std::string& filename) {
+        storage::Serializer serializer(*this);
+        return serializer.load_from_file(filename);
+    }
     bool Graph::remove_node(NodeID id) {
         std::unique_lock lock(mutex_);
         auto it = Nodes_.find(id);
@@ -38,6 +59,32 @@ namespace graph_db{
         // Erase the node
         Nodes_.erase(it);
         return true;
+    }
+    Edge* Graph::create_edge(NodeID from, NodeID to, const std::string& label, EdgeID id) {
+        std::unique_lock lock(mutex_);
+
+        // Validate nodes exist
+        if (Nodes_.find(from) == Nodes_.end()) {
+            throw std::runtime_error("create_edge: from node does not exist");
+        }
+        if (Nodes_.find(to) == Nodes_.end()) {
+            throw std::runtime_error("create_edge: to node does not exist");
+        }
+
+        if (Edges_.find(id) != Edges_.end()) {
+            throw std::runtime_error("create_edge: edge with this ID already exists");
+        }
+        if (id >= next_edge_id_) {
+            next_edge_id_ = id + 1;
+        }
+
+        Edges_[id] = std::make_unique<Edge>(id, from, to, label);
+
+        // Update nodes' edge lists
+        Nodes_[from]->add_outgoing_edge(id);
+        Nodes_[to]->add_incoming_edge(id);
+
+        return Edges_[id].get();
     }
     Node* Graph::get_node(NodeID id){
         std::shared_lock lock(mutex_);

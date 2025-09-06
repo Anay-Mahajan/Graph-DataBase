@@ -19,6 +19,10 @@ namespace graph_db{
             NodeID get_id()const {    return id_; }
              std::unordered_set<EdgeID> get_out_edges();
              std::unordered_set<EdgeID>get_in_edges();
+            PropertyMap get_properties()  { 
+                std::shared_lock lock(mutex_);
+                return properties_; 
+            }
             void add_outgoing_edge(EdgeID edge_id);
             void add_incoming_edge(EdgeID edge_id);
             void remove_outgoing_edge(EdgeID edge_id);

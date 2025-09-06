@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "storage/serializer.h"
 #include "node.h"
 #include "edge.h"
 #include "Index/index_manager.h"
@@ -19,6 +20,7 @@ public:
 
     // Node management
     NodeID create_node();
+    Node *create_node(NodeID id);
     bool remove_node(NodeID id);
     Node* get_node(NodeID id);
     bool has_node(NodeID id);
@@ -45,7 +47,11 @@ public:
         Index* index = index_manager_.get_index(property_key);
         return index ? index->find(value) : std::vector<NodeID>{};
     }
+    Edge * create_edge(NodeID from, NodeID to, const std::string& label, EdgeID id);
 
+    bool save_to_file(const std::string& filename); 
+
+    bool load_from_file(const std::string& filename); 
     private:
     
     std::unordered_map<NodeID, std::unique_ptr<Node>> Nodes_;

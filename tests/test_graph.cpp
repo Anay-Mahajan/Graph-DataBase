@@ -250,3 +250,24 @@ TEST(IndexTest, UpdateAndRemoveProperty) {
     auto results4 = g.find_nodes("city", std::string("San Francisco"));
     ASSERT_EQ(results4.size(), 0);
 }
+
+TEST(SerializationTest, SaveAndLoadGraph) {
+    Graph g;
+    NodeID n1 = g.create_node();
+    NodeID n2 = g.create_node();
+    g.get_node(n1)->set_property("name", std::string("node1"));
+    g.create_edge(n1, n2, "knows");
+
+    const std::string filename = "test_graph.db";
+    g.save_to_file(filename);
+
+    Graph g2;
+    g2.load_from_file(filename);
+
+    ASSERT_EQ(g2.node_count(), 2);
+    ASSERT_EQ(g2.edge_count(), 1);
+    Node* loaded_n1 = g2.get_node(n1);
+    ASSERT_NE(loaded_n1, nullptr);
+    EXPECT_EQ(std::get<std::string>(loaded_n1->get_property("name")), "node1");
+}
+

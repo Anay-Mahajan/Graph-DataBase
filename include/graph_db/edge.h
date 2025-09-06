@@ -26,6 +26,10 @@ namespace graph_db{
             NodeID from_node()  { return from_node_; }
             NodeID to_node()  { return to_node_; }
             std::string label()  { return label_; }
+            PropertyMap get_properties()  { 
+                std::shared_lock lock(mutex_);
+                return properties_; 
+            }
             void set_property(std::string key,PropertyValue p);
             bool has_property(std::string s);
             void remove_property(std::string s);
