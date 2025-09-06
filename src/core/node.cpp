@@ -28,7 +28,16 @@ namespace graph_db{
     }
     void Node::set_property(std::string key,PropertyValue p){
         std::unique_lock lock(mutex_);
-        properties_[key]=p;
+        if (index_manager_) {
+            if (auto index = index_manager_->get_index(key)) {
+                // If property exists, remove old value from index first
+                if (properties_.count(key)) {
+                    index->remove(properties_.at(key), id_);
+                }
+                index->insert(p, id_);
+            }
+        }
+        properties_[key] = p;
     }
     bool Node:: has_property(std::string s){
         if(properties_.find(s)!=properties_.end()){
@@ -38,6 +47,13 @@ namespace graph_db{
     }
     void Node::remove_property(std::string s){
         std::unique_lock lock(mutex_);
+        if (index_manager_) {
+            if (auto index = index_manager_->get_index(s)) {
+                if (properties_.count(s)) {
+                    index->remove(properties_.at(s), id_);
+                }
+            }
+        }
         properties_.erase(s);
     }
     PropertyValue Node:: get_property(std::string s){

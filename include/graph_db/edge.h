@@ -1,5 +1,6 @@
 #pragma once
 #include"types.h"
+#include "Index/index_manager.h"
 #include<string>
 #include<shared_mutex>
 namespace graph_db{
@@ -11,6 +12,7 @@ namespace graph_db{
             std::string label_;
             int64_t weight_=1;
             PropertyMap properties_;
+            IndexManager* index_manager_ = nullptr;
             mutable std::shared_mutex mutex_;
         public:
             explicit Edge(EdgeID id,NodeID from,NodeID to,const std::string& label=" ",int64_t weight=1){
@@ -29,6 +31,7 @@ namespace graph_db{
             void remove_property(std::string s);
             PropertyValue get_property(std::string s);
             int64_t get_weight() { return weight_; }
+            void set_index_manager(IndexManager* manager) { index_manager_ = manager; }
             void set_weight(int64_t w) { weight_ = w; }
     };
 } 

@@ -1,5 +1,6 @@
 #pragma once 
 #include"types.h"
+#include"Index/index_manager.h"
 #include<vector>
 #include<memory>
 #include<unordered_set>
@@ -11,6 +12,7 @@ namespace graph_db{
             std::unordered_set<EdgeID>Incoming_Edges_;
             std::unordered_set<EdgeID>Outgoing_Edges_;
             PropertyMap properties_;
+            IndexManager* index_manager_ = nullptr;
             mutable std::shared_mutex mutex_;
         public:
             explicit Node(NodeID id) : id_(id) {}
@@ -25,5 +27,6 @@ namespace graph_db{
             bool has_property(std::string s);
             void remove_property(std::string s);
             PropertyValue get_property(std::string s);
+            void set_index_manager(IndexManager* manager) { index_manager_ = manager; }
     };
  }

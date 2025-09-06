@@ -3,7 +3,9 @@ namespace graph_db{
     NodeID Graph::create_node(){
        std::unique_lock lock(mutex_);
        NodeID id= next_node_id_++;
-       Nodes_[id]=std::make_unique<Node>(id);
+       auto node = std::make_unique<Node>(id);
+       node->set_index_manager(&index_manager_);
+       Nodes_[id]=std::move(node);
        return id;
     }
     bool Graph::remove_node(NodeID id) {

@@ -197,3 +197,56 @@ TEST(ThreadSafetyTests, ConcurrentEdgeCreateModifyRemove) {
     ASSERT_GE(g.node_count(), static_cast<size_t>(kNodeCount));
     (void)g.edge_count();
 }
+TEST(IndexTest, CreateIndexAndFindNode) {
+    Graph g;
+    g.create_index("name");
+
+    NodeID node1 = g.create_node();
+    Node* n1_ptr = g.get_node(node1);
+    n1_ptr->set_property("name", std::string("Alice"));
+
+    NodeID node2 = g.create_node();
+    Node* n2_ptr = g.get_node(node2);
+    n2_ptr->set_property("name", std::string("Bob"));
+    
+    NodeID node3 = g.create_node();
+    Node* n3_ptr = g.get_node(node3);
+    n3_ptr->set_property("name", std::string("Alice"));
+
+    // Find nodes by indexed property
+    auto results_alice = g.find_nodes("name", std::string("Alice"));
+    ASSERT_EQ(results_alice.size(), 2);
+    EXPECT_TRUE(std::find(results_alice.begin(), results_alice.end(), node1) != results_alice.end());
+    EXPECT_TRUE(std::find(results_alice.begin(), results_alice.end(), node3) != results_alice.end());
+
+    auto results_bob = g.find_nodes("name", std::string("Bob"));
+    ASSERT_EQ(results_bob.size(), 1);
+    EXPECT_EQ(results_bob[0], node2);
+}
+
+TEST(IndexTest, UpdateAndRemoveProperty) {
+    Graph g;
+    g.create_index("city");
+
+    NodeID node1 = g.create_node();
+    Node* n1_ptr = g.get_node(node1);
+    n1_ptr->set_property("city", std::string("New York"));
+
+    auto results1 = g.find_nodes("city", std::string("New York"));
+    ASSERT_EQ(results1.size(), 1);
+
+    // Update property
+    n1_ptr->set_property("city", std::string("San Francisco"));
+    
+    auto results2 = g.find_nodes("city", std::string("New York"));
+    ASSERT_EQ(results2.size(), 0);
+
+    auto results3 = g.find_nodes("city", std::string("San Francisco"));
+    ASSERT_EQ(results3.size(), 1);
+    EXPECT_EQ(results3[0], node1);
+
+    // Remove property
+    n1_ptr->remove_property("city");
+    auto results4 = g.find_nodes("city", std::string("San Francisco"));
+    ASSERT_EQ(results4.size(), 0);
+}

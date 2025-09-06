@@ -6,18 +6,16 @@
 #include <algorithm>
 #include <variant>
 
-// B+ Tree implementation
-// NOTE: This is a simplified implementation for demonstration purposes.
-// A production-ready B+ Tree would be more complex, handling disk I/O,
-// more complex data types, and concurrency control.
 namespace bplustree {
 
 template<typename Key, typename Value>
 class BPlusTree {
 public:
-    BPlusTree(int degree = 3) : degree_(degree), root_(new Node(true)) {}
+    // --- CHANGE HERE: Changed 'int' to 'size_t' ---
+    BPlusTree(size_t degree = 3) : degree_(degree), root_(new Node(true)) {}
 
     void insert(const Key& key, const Value& value) {
+        // This comparison is now safe
         if (root_->keys.size() == (2 * degree_ - 1)) {
             Node* new_root = new Node(false);
             new_root->children.push_back(root_);
@@ -38,8 +36,6 @@ public:
     }
 
     void remove(const Key& key, const Value& value) {
-        // Simplified remove: find the key and remove the value from the vector.
-        // A full implementation would handle node merging and redistribution.
          Node* leaf = find_leaf(root_, key);
         for (size_t i = 0; i < leaf->keys.size(); ++i) {
             if (leaf->keys[i] == key) {
@@ -64,7 +60,8 @@ private:
         Node(bool leaf) : is_leaf(leaf) {}
     };
 
-    int degree_;
+    // --- CHANGE HERE: Changed 'int' to 'size_t' ---
+    size_t degree_; 
     Node* root_;
 
     Node* find_leaf(Node* node, const Key& key) const {
@@ -95,6 +92,7 @@ private:
             while (i < node->keys.size() && key > node->keys[i]) {
                 i++;
             }
+            // This comparison is now safe
             if (node->children[i]->keys.size() == (2 * degree_ - 1)) {
                 split_child(node, i);
                 if (key > node->keys[i]) {

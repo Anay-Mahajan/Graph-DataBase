@@ -3,13 +3,28 @@
 namespace graph_db{
     void Edge::set_property(std::string key,PropertyValue p){
         std::unique_lock lock(mutex_);
-        properties_[key]=p;
+       if (index_manager_) {
+            if (auto index = index_manager_->get_index(key)) {
+                if (properties_.count(key)) {
+                    index->remove(properties_.at(key), from_node_); // Or a designated ID
+                }
+                index->insert(p, from_node_); // Or a designated ID
+            }
+        }
+        properties_[key] = p;
     }
     bool Edge::has_property(std::string s){
         return properties_.find(s)!=properties_.end();
     }
     void Edge::remove_property(std::string s){
         std::unique_lock lock(mutex_);
+        if (index_manager_) {
+            if (auto index = index_manager_->get_index(s)) {
+                if (properties_.count(s)) {
+                    index->remove(properties_.at(s), from_node_); // Or a designated ID
+                }
+            }
+        }
         properties_.erase(s);
     }
     PropertyValue Edge::get_property(std::string s){

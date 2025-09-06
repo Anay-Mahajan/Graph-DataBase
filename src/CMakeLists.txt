@@ -4,6 +4,8 @@ add_library(graphdb
     core/node.cpp
     core/edge.cpp
     core/graph_algo.cpp
+    Index/index_manager.cpp
+    Index/b_plus_tree.cpp
 )
 
 target_include_directories(graphdb
