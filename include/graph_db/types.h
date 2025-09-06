@@ -2,6 +2,7 @@
 #include<unordered_map>
 #include <cstdint>
 #include<variant>
+#include<string>
 namespace graph_db{
     using NodeID= std::uint64_t;
     using EdgeID=std::uint64_t;

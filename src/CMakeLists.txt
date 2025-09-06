@@ -1,4 +1,7 @@
 # src/CMakeLists.txt
+add_subdirectory(query)
+
+
 add_library(graphdb
     core/graph.cpp
     core/node.cpp
@@ -11,6 +14,11 @@ add_library(graphdb
     buffer/lru_replacer.cpp
     buffer/buffer_pool_manager.cpp
 )
+add_executable(graph_cli main.cpp)
+
+# Link the CLI against the graphdb and query libraries
+target_link_libraries(graph_cli PRIVATE graphdb query)
+
 
 target_include_directories(graphdb
     PUBLIC
