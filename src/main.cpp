@@ -203,7 +203,7 @@ int main() {
                     if(g.remove_edge(id)) std::cout << "Removed edge " << id << std::endl;
                     else std::cerr << "Edge " << id << " not found." << std::endl;
                 }
-            } else if (command == "PRINT" && ss.str().find("GRAPH") != std::string::npos) {
+            } else if (command == "PRINT") {
                  std::cout << "--- Current Graph State ---\n"
                            << "Nodes (" << g.node_count() << "):\n";
                  for(const auto& [id, node] : g.get_all_nodes()) {

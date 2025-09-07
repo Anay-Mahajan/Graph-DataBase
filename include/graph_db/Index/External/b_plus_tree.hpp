@@ -11,7 +11,6 @@ namespace bplustree {
 template<typename Key, typename Value>
 class BPlusTree {
 public:
-    // --- CHANGE HERE: Changed 'int' to 'size_t' ---
     BPlusTree(size_t degree = 3) : degree_(degree), root_(new Node(true)) {}
 
     void insert(const Key& key, const Value& value) {
@@ -60,7 +59,6 @@ private:
         Node(bool leaf) : is_leaf(leaf) {}
     };
 
-    // --- CHANGE HERE: Changed 'int' to 'size_t' ---
     size_t degree_; 
     Node* root_;
 
