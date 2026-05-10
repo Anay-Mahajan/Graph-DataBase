@@ -107,8 +107,9 @@ TEST(ThreadSafetyTests, ConcurrentEdgeCreateModifyRemove) {
     // Edge creator threads
     std::vector<std::thread> threads;
     for (int t = 0; t < creators; ++t) {
-        threads.emplace_back([&g, &edge_ids, &edge_mutex, &stop, &rng, pick_node]() mutable {
-            std::mt19937_64 r(rng());
+        auto seed = rng();
+        threads.emplace_back([&g, &edge_ids, &edge_mutex, &stop, pick_node, seed]() mutable {
+            std::mt19937_64 r(seed);
             for (int i = 0; i < iterations_per_thread && !stop.load(); ++i) {
                 NodeID a = pick_node(r);
                 NodeID b = pick_node(r);
@@ -126,8 +127,9 @@ TEST(ThreadSafetyTests, ConcurrentEdgeCreateModifyRemove) {
 
     // Edge modifier threads: set/get/remove property
     for (int t = 0; t < modifiers; ++t) {
-        threads.emplace_back([&g, &edge_ids, &edge_mutex, &stop, &rng]() mutable {
-            std::mt19937_64 r(rng());
+        auto seed = rng();
+        threads.emplace_back([&g, &edge_ids, &edge_mutex, &stop, seed]() mutable {
+            std::mt19937_64 r(seed);
             for (int i = 0; i < iterations_per_thread && !stop.load(); ++i) {
                 EdgeID chosen = 0;
                 {
@@ -154,8 +156,9 @@ TEST(ThreadSafetyTests, ConcurrentEdgeCreateModifyRemove) {
 
     // Edge remover threads
     for (int t = 0; t < removers; ++t) {
-        threads.emplace_back([&g, &edge_ids, &edge_mutex, &stop, &rng]() mutable {
-            std::mt19937_64 r(rng());
+        auto seed = rng();
+        threads.emplace_back([&g, &edge_ids, &edge_mutex, &stop, seed]() mutable {
+            std::mt19937_64 r(seed);
             for (int i = 0; i < iterations_per_thread && !stop.load(); ++i) {
                 EdgeID chosen = 0;
                 {
